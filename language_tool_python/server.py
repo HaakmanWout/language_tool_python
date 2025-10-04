@@ -473,7 +473,10 @@ class LanguageTool:
         for n in range(num_tries):
             try:
                 with (
-                    requests.get(url, params=params, timeout=self._TIMEOUT)
+                    requests.post(url,
+                                  data=params,
+                                  headers={"Content-Type": "application/x-www-form-urlencoded"},
+                                  timeout=self._TIMEOUT)
                 ) as response:
                     try:
                         return response.json()
